@@ -91,8 +91,8 @@ fn main() {
         }
     };
     let os = matches.value_of("OS").unwrap();
-    let user = matches.value_of("API_KEY").unwrap();
-    let key = matches.value_of("USER_UUID").unwrap();
+    let key = matches.value_of("API_KEY").unwrap();
+    let user = matches.value_of("USER_UUID").unwrap();
     let output;
     let input;
 
@@ -100,7 +100,7 @@ fn main() {
     println!("Loaded config: Win64='{}', Linux='{}', OSX='{}'", cfg.windows_bin_loc, cfg.linux_bin_loc, cfg.osx_bin_loc);
     if os == "Win64"
     {
-        output = Path::new("/tmp/wikilibs_parser_windows");
+        output = Path::new("/tmp/wikilibs_parser_windows.exe");
         input = Path::new(&cfg.windows_bin_loc);
     }
     else if os == "Linux"
