@@ -1,0 +1,5 @@
+{
+    "Win64": "./wikilibs_parser_wrapper_windows.exe",
+    "Linux": "./wikilibs_parser_wrapper_linux",
+    "OSX": "./wikilibs_parser_wrapper_osx"
+}
