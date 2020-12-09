@@ -1,9 +1,11 @@
 import flask
 import os
+from waitress import serve
+import app1
 from flask import request, send_file
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 
 @app.route('/', methods=['GET'])
@@ -33,4 +35,5 @@ def home():
     else:
         return {'error': "missing args"}
 
-app.run()
+if __name__ == "__main__":
+    serve(app1.app, host='127.0.0.1', port=4242)
