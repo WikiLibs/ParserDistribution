@@ -29,14 +29,14 @@ def home():
             return {'error': "invalid args"}
         
         if osName == 'Linux':
-            contentType = {'Content-Type': 'application/x-executable'}
+            contentType = 'application/x-executable'
         elif osName == 'Win64':
-            contentType = {'Content-Type': 'application/vnd.microsoft.portable-executable'}
+            contentType = 'application/vnd.microsoft.portable-executable'
         elif osName == 'OSX':
-            contentType = {'Content-Type': ' application/x-mach-binary'}
+            contentType = 'application/x-mach-binary'
 
         try:
-            return send_file(content.replace('\n', ''), attachment_filename='wikilibs_parser', as_attachment=True), 200, contentType
+            return send_file(content.replace('\n', ''), attachment_filename='wikilibs_parser', as_attachment=True, mimetype=contentType), 200
         except Exception as e:
             return {'error': str(e)}
         
