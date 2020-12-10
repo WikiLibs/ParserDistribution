@@ -15,6 +15,7 @@ def home():
     osName = request.args.get("os")
     apiKey = request.args.get("apiKey")
     userID = request.args.get("userId")
+    contentType = {}
 
     if osName and apiKey and userID:
         os.system(pathToBin + ' ' + str(osName) + ' ' + str(apiKey) + ' ' + str(userID) + ' > tmp')
@@ -27,8 +28,15 @@ def home():
         if len(content) == 0:
             return {'error': "invalid args"}
         
+        if osName == 'Linux':
+            contentType = {'Content-Type': 'application/x-executable'}
+        elif osName == 'Win64':
+            contentType = {'Content-Type': 'application/vnd.microsoft.portable-executable'}
+        elif osName == 'OSX':
+            contentType = {'Content-Type': ' application/x-mach-binary'}
+
         try:
-            return send_file(content.replace('\n', ''), attachment_filename='wikilibs_parser', as_attachment=True)
+            return send_file(content.replace('\n', ''), attachment_filename='wikilibs_parser', as_attachment=True), 200, contentType
         except Exception as e:
             return {'error': str(e)}
         
